@@ -1,0 +1,7 @@
+# Canny alg
+canny_ltres=100
+canny_htres=200
+
+# Hough alg
+hough_minlength=100
+hough_maxgap=5
