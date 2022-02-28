@@ -12,7 +12,7 @@ string get_var(string line) {
 int get_val(string line) {
   size_t pos = line.find("=");
   string s = line.substr(pos + 1);
-  int v = stoi(s, nullptr);
+  int v = atoi(s.c_str());
   return v;
 }
 
@@ -24,6 +24,9 @@ void parse(string line) {
   else if (var.compare("canny_htres") == 0) canny_htres = value;
   else if (var.compare("hough_minlength") == 0) hough_minlength = value;
   else if (var.compare("hough_maxgap") == 0) hough_maxgap = value;
+  else if (var.compare("thresh_val") == 0) thresh_val = value;
+  else if (var.compare("ksize_x") == 0) ksize_x = value;
+  else if (var.compare("ksize_y") == 0) ksize_y = value;
 }
 
 void load_cfg() {

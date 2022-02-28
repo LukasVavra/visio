@@ -1,7 +1,14 @@
 # Canny alg
 canny_ltres=100
-canny_htres=200
+canny_htres=150
 
 # Hough alg
 hough_minlength=100
 hough_maxgap=5
+
+# Threshold
+thresh_val=100
+
+# Blur kernel size
+ksize_x=21
+ksize_y=21
