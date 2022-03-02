@@ -6,6 +6,9 @@ canny_htres=150
 hough_minlength=100
 hough_maxgap=5
 
+# Invert binary image (1 = inverted)
+bin_inv=1
+
 # Threshold
 thresh_val=100
 

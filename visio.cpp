@@ -19,7 +19,8 @@ int hough_minlength = 30;
 int hough_maxgap = 10;
 int thresh_val = 127;
 int ksize_x = 11;
-int  ksize_y = 11;
+int ksize_y = 11;
+int bin_inv = 0;
 
 Scalar randomColor(RNG &rng) {
   int r = (unsigned) rng;
@@ -85,7 +86,13 @@ int main(int argc, char **argv) {
     medianBlur(image, smooth, ksize_x);
     // convert to grayscale
     cvtColor(smooth, gray, COLOR_BGR2GRAY);
-    threshold(gray, thresh, thresh_val, 255, THRESH_BINARY);
+    // create (inverted) binary image
+    if (bin_inv == 1) {
+      threshold(gray, thresh, thresh_val, 255, THRESH_BINARY_INV);
+    }
+    else {
+      threshold(gray, thresh, thresh_val, 255, THRESH_BINARY);
+    }
     // find edges
     //Canny(gray, canny, canny_ltres, canny_htres);
     // detect contours

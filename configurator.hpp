@@ -11,6 +11,7 @@ extern int hough_maxgap;
 extern int thresh_val;
 extern int ksize_x;
 extern int ksize_y;
+extern int bin_inv;
 
 // functions
 string get_var(string line);

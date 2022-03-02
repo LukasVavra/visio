@@ -27,6 +27,8 @@ void parse(string line) {
   else if (var.compare("thresh_val") == 0) thresh_val = value;
   else if (var.compare("ksize_x") == 0) ksize_x = value;
   else if (var.compare("ksize_y") == 0) ksize_y = value;
+  else if (var.compare("bin_inv") == 0) bin_inv = value;
+
 }
 
 void load_cfg() {
