@@ -10,9 +10,13 @@
 using namespace cv;
 using namespace std;
 
+// window name
 const string winName = "Project Visio";
+
+// random number
 RNG rng(255);
 
+// init config values
 int canny_ltres = 50;
 int canny_htres = 200;
 int hough_minlength = 30;
@@ -22,6 +26,7 @@ int ksize_x = 11;
 int ksize_y = 11;
 int bin_inv = 0;
 
+// Generate random color
 Scalar randomColor(RNG &rng) {
   int r = (unsigned) rng;
   int g = (unsigned) rng;
@@ -29,6 +34,7 @@ Scalar randomColor(RNG &rng) {
   return Scalar(r & 255, g & 255, b & 255);
 }
 
+// Main function
 int main(int argc, char **argv) {
   // original image matrix
   Mat orig;
@@ -73,7 +79,12 @@ int main(int argc, char **argv) {
 
   cout << "Backend API name: " << cap.getBackendName() << endl;
   cout << "Starting video stream.\n";
-  cout << "Press <ESC> to stop streaming...\n";
+  cout << "Press <ESC> or <q> to stop streaming...\n";
+
+  // create window
+  namedWindow(winName, WINDOW_AUTOSIZE);
+  // create trackbars
+  createTrackbar("Threshold", winName, &thresh_val, 255, nullptr);
 
   //  Main  loop
   while(true) {
@@ -129,8 +140,8 @@ int main(int argc, char **argv) {
       line(image, p1, p2, Scalar(0,0,255), 3);
     }*/
     // show edges
-    imshow(winName, image);
-    imshow("Thresholded image", thresh);
+    imshow(winName, orig);
+    imshow("Robot vision", thresh);
     //imshow("Canny image", canny);
     // wait for keypress
     int wk = waitKey(1);

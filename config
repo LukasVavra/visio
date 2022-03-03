@@ -10,8 +10,8 @@ hough_maxgap=5
 bin_inv=1
 
 # Threshold
-thresh_val=100
+thresh_val=128
 
 # Blur kernel size
-ksize_x=21
-ksize_y=21
+ksize_x=11
+ksize_y=11

@@ -19,7 +19,7 @@ int get_val(string line) {
 void parse(string line) {
   string var = get_var(line);
   int value = get_val(line);
-  cout << "variable:" << var << ",value:" << value << endl;
+  cout << var << "=" << value << endl;
   if (var.compare("canny_ltres") == 0) canny_ltres = value;
   else if (var.compare("canny_htres") == 0) canny_htres = value;
   else if (var.compare("hough_minlength") == 0) hough_minlength = value;
