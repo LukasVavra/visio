@@ -34,6 +34,11 @@ Scalar randomColor(RNG &rng) {
   return Scalar(r & 255, g & 255, b & 255);
 }
 
+// Threshold trackbar callback function
+static void callbackThreshold(int value, void* userdata) {
+  thresh_val = value;
+}
+
 // Main function
 int main(int argc, char **argv) {
   // original image matrix
@@ -84,7 +89,9 @@ int main(int argc, char **argv) {
   // create window
   namedWindow(winName, WINDOW_AUTOSIZE);
   // create trackbars
-  createTrackbar("Threshold", winName, &thresh_val, 255, nullptr);
+  createTrackbar("Threshold", winName, NULL, 255, callbackThreshold);
+  // init trackbar value
+  setTrackbarPos("Threshold", winName, thresh_val);
 
   //  Main  loop
   while(true) {
