@@ -20,15 +20,10 @@ void parse(string line) {
   string var = get_var(line);
   int value = get_val(line);
   cout << var << "=" << value << endl;
-  if (var.compare("canny_ltres") == 0) canny_ltres = value;
-  else if (var.compare("canny_htres") == 0) canny_htres = value;
-  else if (var.compare("hough_minlength") == 0) hough_minlength = value;
-  else if (var.compare("hough_maxgap") == 0) hough_maxgap = value;
+  if (var.compare("bin_inv") == 0) bin_inv = value;
   else if (var.compare("thresh_val") == 0) thresh_val = value;
   else if (var.compare("ksize_x") == 0) ksize_x = value;
   else if (var.compare("ksize_y") == 0) ksize_y = value;
-  else if (var.compare("bin_inv") == 0) bin_inv = value;
-
 }
 
 void load_cfg() {

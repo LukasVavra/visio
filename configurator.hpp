@@ -4,10 +4,6 @@
 using namespace std;
 
 // variables
-extern int canny_ltres;
-extern int canny_htres;
-extern int hough_minlength;
-extern int hough_maxgap;
 extern int thresh_val;
 extern int ksize_x;
 extern int ksize_y;
