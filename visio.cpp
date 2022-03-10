@@ -78,14 +78,11 @@ int main(int argc, char **argv) {
   cout << "Loading config file" << endl;
   load_cfg();
   cout << "Backend API name: " << cap.getBackendName() << endl;
-  cout << "Starting video stream.\n";
-  cout << "Press <ESC> or <q> to stop streaming...\n";
 
   // create window
   namedWindow(winName, WINDOW_AUTOSIZE);
   // create trackbars
   createTrackbar("Threshold", winName, NULL, 255, callbackThreshold);
-  // create trackbars
   createTrackbar("Inversion", winName, NULL, 1, callbackInversion);
   // init trackbars value
   setTrackbarPos("Threshold", winName, thresh_val);
@@ -103,12 +100,14 @@ int main(int argc, char **argv) {
     // convert to grayscale
     cvtColor(smooth, gray, COLOR_BGR2GRAY);
     // create (inverted) binary image
+    int thresh_type = 0;
     if (bin_inv == 1) {
-      threshold(gray, thresh, thresh_val, 255, THRESH_BINARY_INV);
+      thresh_type = THRESH_BINARY_INV;
     }
     else {
-      threshold(gray, thresh, thresh_val, 255, THRESH_BINARY);
+      thresh_type = THRESH_BINARY;
     }
+    threshold(gray, thresh, thresh_val, 255, thresh_type);
     // detect contours
     findContours(thresh, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
 
@@ -122,6 +121,15 @@ int main(int argc, char **argv) {
           maxAreaIdx = i;
         }
       }
+      // contour moments
+      Moments m = moments(contours[maxAreaIdx]);
+      // center-center distance
+      int cx = (int)(m.m10 / m.m00);
+      int cy = (int)(m.m01 / m.m00);
+      int ix = (int) image.cols / 2;
+      int cdist = cx - ix;
+      // draw distance line
+      line(image, Point(ix, image.rows/2), Point(cx, image.rows/2), Scalar(0, 0, 255));
       // draw only maximal contour
       drawContours(image, contours, maxAreaIdx, Scalar(255, 0, 0));
       // draw rotated rectangle over maximal contour
